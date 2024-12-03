@@ -26,7 +26,7 @@ namespace FotoGameB2Y2Opdracht
 
         private async void OnTasksTapped(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("TasksPage");
+            await Shell.Current.GoToAsync("///TasksPage");
         }
 
         private async void OnClaimsTapped(object sender, EventArgs e)
