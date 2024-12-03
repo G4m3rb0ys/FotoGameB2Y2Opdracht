@@ -1,0 +1,17 @@
+﻿/* 
+Credits for Icons:
+1. Icon by reussy
+   https://www.freepik.com/icon/user_3161848#fromView=search&page=1&position=75&uuid=0f478ddf-f3cf-431a-806b-443ff2d2d898
+
+2. Icon by Creative Stall Premium
+   https://www.freepik.com/icon/shopping-basket_3705671#fromView=search&page=1&position=35&uuid=0ccc8c4b-592a-4fb8-bc25-ce634a79a18e
+
+3. Icon by riajulislam
+   https://www.freepik.com/icon/flower_18196615#fromView=search&page=3&position=2&uuid=81ecb2bb-0370-4d25-b61a-fe27a6a7dfc7
+
+4. Icon by Freepik (Papyrus)
+   https://www.freepik.com/icon/papyrus_5584240
+
+5. Icon by Freepik (Camera)
+   https://www.freepik.com/icon/camera_883787#fromView=search&page=1&position=6&uuid=c579cb44-21b1-40fa-9a01-584c2a4748a3
+*/

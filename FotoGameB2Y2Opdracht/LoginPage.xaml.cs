@@ -10,7 +10,7 @@ namespace FotoGameB2Y2Opdracht;
             InitializeComponent();
         }
 
-        private void OnLoginButtonClicked(object sender, EventArgs e)
+        private async void OnLoginButtonClicked(object sender, EventArgs e)
         {
             var username = UsernameEntry.Text;
             var password = PasswordEntry.Text;
@@ -18,8 +18,8 @@ namespace FotoGameB2Y2Opdracht;
             if (username == HardcodedUsername && password == HardcodedPassword)
             {
                 ErrorMessageLabel.IsVisible = false;
-                DisplayAlert("Success", "Welcome!", "OK");
-            }
+                await Shell.Current.GoToAsync("///MainPage");
+        }
             else
             {
                 ErrorMessageLabel.Text = "Invalid username or password.";

@@ -1,0 +1,65 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FotoGameB2Y2Opdracht.AboutPage"
+             Title="About">
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Label Text="About This App" FontSize="24" HorizontalOptions="Center" />
+
+        <Label Text="Icons used in this app:" FontSize="18" />
+
+        <!-- Link 1 -->
+        <Label Text="Icon by reussy"
+               TextColor="Blue"
+               FontSize="14"
+               HorizontalOptions="Start">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" 
+                                      CommandParameter="https://www.freepik.com/icon/user_3161848#fromView=search&page=1&position=75&uuid=0f478ddf-f3cf-431a-806b-443ff2d2d898" />
+            </Label.GestureRecognizers>
+        </Label>
+
+        <!-- Link 2 -->
+        <Label Text="Icon by Creative Stall Premium"
+               TextColor="Blue"
+               FontSize="14"
+               HorizontalOptions="Start">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" 
+                                      CommandParameter="https://www.freepik.com/icon/shopping-basket_3705671#fromView=search&page=1&position=35&uuid=0ccc8c4b-592a-4fb8-bc25-ce634a79a18e" />
+            </Label.GestureRecognizers>
+        </Label>
+
+        <!-- Link 3 -->
+        <Label Text="Icon by riajulislam"
+               TextColor="Blue"
+               FontSize="14"
+               HorizontalOptions="Start">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" 
+                                      CommandParameter="https://www.freepik.com/icon/flower_18196615#fromView=search&page=3&position=2&uuid=81ecb2bb-0370-4d25-b61a-fe27a6a7dfc7" />
+            </Label.GestureRecognizers>
+        </Label>
+
+        <!-- Link 4 -->
+        <Label Text="Icon by Freepik (Papyrus)"
+               TextColor="Blue"
+               FontSize="14"
+               HorizontalOptions="Start">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" 
+                                      CommandParameter="https://www.freepik.com/icon/papyrus_5584240" />
+            </Label.GestureRecognizers>
+        </Label>
+
+        <!-- Link 5 -->
+        <Label Text="Icon by Freepik (Camera)"
+               TextColor="Blue"
+               FontSize="14"
+               HorizontalOptions="Start">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" 
+                                      CommandParameter="https://www.freepik.com/icon/camera_883787#fromView=search&page=1&position=6&uuid=c579cb44-21b1-40fa-9a01-584c2a4748a3" />
+            </Label.GestureRecognizers>
+        </Label>
+    </VerticalStackLayout>
+</ContentPage>

@@ -18,5 +18,11 @@
     <ShellContent Title="Forgot Password"
                   ContentTemplate="{DataTemplate local:ForgotPasswordPage}"
                   Route="ForgotPasswordPage" />
+    <ShellContent Title="Main"
+                  ContentTemplate="{DataTemplate local:MainPage}"
+                  Route="MainPage" />
+    <ShellContent Title="Tasks"
+                  ContentTemplate="{DataTemplate local:TasksPage}"
+                  Route="TasksPage" />
 
 </Shell>
