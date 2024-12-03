@@ -1,0 +1,27 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FotoGameB2Y2Opdracht.RegisterPage"
+             Title="Register">
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <HorizontalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+            <!-- Terugknop -->
+            <Button Text="←"
+                    Clicked="OnBackButtonClicked"
+                    FontSize="20"
+                    WidthRequest="40"
+                    BackgroundColor="Transparent"
+                    TextColor="White"
+                    HorizontalOptions="Start" />
+        </HorizontalStackLayout>
+
+        <!-- Invoervelden -->
+        <Entry x:Name="AgeEntry" Placeholder="Age" Keyboard="Numeric" />
+        <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" />
+        <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" />
+
+        <Button Text="Create Account" Clicked="OnRegisterButtonClicked" />
+
+        <Label x:Name="MessageLabel" TextColor="Green" IsVisible="False" />
+
+    </VerticalStackLayout>
+</ContentPage>

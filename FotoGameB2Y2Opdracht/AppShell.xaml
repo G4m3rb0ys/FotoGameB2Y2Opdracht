@@ -8,8 +8,15 @@
     Title="FotoGameB2Y2Opdracht">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="login"
+        ContentTemplate="{DataTemplate local:LoginPage}"
+        Route="LoginPage" />
+    <ShellContent
+        Title="register"
+        ContentTemplate="{DataTemplate local:RegisterPage}"
+        Route="RegisterPage" />
+    <ShellContent Title="Forgot Password"
+                  ContentTemplate="{DataTemplate local:ForgotPasswordPage}"
+                  Route="ForgotPasswordPage" />
 
 </Shell>
