@@ -1,0 +1,44 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FotoGameB2Y2Opdracht.TaskPage"
+             Title="Task 1">
+    <VerticalStackLayout Padding="20" Spacing="20">
+        <!-- Titel -->
+        <Label 
+            Text="Task 1"
+            FontSize="24" 
+            FontAttributes="Bold"
+            HorizontalOptions="Center" />
+
+        <!-- Beschrijving -->
+        <Label
+            Text="This is a detailed description of Task 1. You need to complete the steps outlined here to earn points."
+            FontSize="16"
+            LineBreakMode="WordWrap" />
+
+        <!-- Deadline -->
+        <Label
+            Text="Deadline: 2023-12-15"
+            FontSize="14"
+            TextColor="Gray" />
+
+        <!-- Punten -->
+        <Label
+            Text="Points: 50"
+            FontSize="16"
+            TextColor="Gold" />
+
+        <!-- Knoppen -->
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Text="Accept Task"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    Clicked="OnAcceptTaskClicked" />
+
+            <Button Text="Go Back"
+                    BackgroundColor="Gray"
+                    TextColor="White"
+                    Clicked="OnGoBackClicked" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

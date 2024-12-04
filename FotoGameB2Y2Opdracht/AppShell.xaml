@@ -24,5 +24,8 @@
     <ShellContent Title="Tasks"
                   ContentTemplate="{DataTemplate local:TasksPage}"
                   Route="TasksPage" />
+    <ShellContent Title="Task"
+                  ContentTemplate="{DataTemplate local:TaskPage}"
+                  Route="TaskPage" />
 
 </Shell>

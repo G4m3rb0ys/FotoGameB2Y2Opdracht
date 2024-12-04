@@ -9,7 +9,7 @@ public partial class TasksPage : ContentPage
 
     private async void OnViewTaskClicked(object sender, EventArgs e)
     {
-        await DisplayAlert("View Task", "Navigating to the full task details.", "OK");
+        await Shell.Current.GoToAsync("///TaskPage");
     }
 
     // Navigeren naar de profielpagina
