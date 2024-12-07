@@ -11,10 +11,23 @@
         </Grid.RowDefinitions>
 
         <!-- Punten rechtsboven -->
-        <HorizontalStackLayout Grid.Row="0" HorizontalOptions="End" VerticalOptions="Start" Padding="10">
-            <Image Source="crown_icon.png" WidthRequest="24" HeightRequest="24" />
-            <Label Text="100" FontSize="18" TextColor="Gold" VerticalOptions="Center" />
+        <HorizontalStackLayout Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="10" Spacing="10">
+            <!-- Knop voor het maken van een nieuwe taak -->
+            <Button Text="Create Task"
+            BackgroundColor="Blue"
+            TextColor="White"
+            FontSize="12"
+            Padding="5"
+            WidthRequest="100"
+            Clicked="OnCreateTaskButtonClicked" />
+
+            <!-- Puntenweergave -->
+            <HorizontalStackLayout HorizontalOptions="End" VerticalOptions="Center">
+                <Image Source="crown_icon.png" WidthRequest="24" HeightRequest="24" />
+                <Label Text="100" FontSize="18" TextColor="Gold" VerticalOptions="Center" />
+            </HorizontalStackLayout>
         </HorizontalStackLayout>
+
 
         <!-- Hoofdinhoud: lijst met taken -->
         <ScrollView Grid.Row="1">

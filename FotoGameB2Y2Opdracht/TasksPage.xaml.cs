@@ -41,4 +41,9 @@ public partial class TasksPage : ContentPage
     {
         await Shell.Current.GoToAsync("ClaimsPage");
     }
+
+    private async void OnCreateTaskButtonClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("///CreateTaskPage");
+    }
 }

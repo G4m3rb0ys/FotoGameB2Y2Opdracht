@@ -1,0 +1,51 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             x:Class="FotoGameB2Y2Opdracht.CreateTaskPage"
+             Title="Create Task">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <!-- Titel -->
+            <Label Text="Create a New Task" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+
+            <!-- Titel invoerveld -->
+            <Entry x:Name="TitleEntry"
+                   Placeholder="Enter task title"
+                   FontSize="16" />
+
+            <!-- Beschrijving invoerveld -->
+            <Editor x:Name="DescriptionEditor"
+                    Placeholder="Enter task description"
+                    FontSize="16"
+                    AutoSize="TextChanges" />
+
+            <!-- Deadline invoerveld -->
+            <DatePicker x:Name="DeadlinePicker"
+                        MinimumDate="{Binding Source={x:Static system:DateTime.Now}}"
+                        FontSize="16" />
+
+            <!-- Checkbox voor wekelijkse opdrachten -->
+            <HorizontalStackLayout VerticalOptions="Center" Spacing="10">
+                <Label Text="Is this a weekly task?" FontSize="16" />
+                <CheckBox x:Name="IsWeeklyCheckBox" CheckedChanged="OnIsWeeklyCheckedChanged" />
+            </HorizontalStackLayout>
+
+            <!-- Aantal weken invoerveld -->
+            <Entry x:Name="NumberOfWeeksEntry"
+                   Placeholder="Enter number of weeks"
+                   FontSize="16"
+                   Keyboard="Numeric"
+                   IsVisible="False"
+                   TextChanged="OnWeeksChanged" />
+
+            <!-- Dynamische lijst van weekdoelen -->
+            <VerticalStackLayout x:Name="WeeklyGoalsLayout" IsVisible="False" />
+
+            <!-- Opslaan knop -->
+            <Button Text="Save Task"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    Clicked="OnSaveTaskClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

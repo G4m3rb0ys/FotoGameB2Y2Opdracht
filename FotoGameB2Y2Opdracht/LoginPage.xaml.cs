@@ -15,8 +15,8 @@ namespace FotoGameB2Y2Opdracht;
             var username = UsernameEntry.Text;
             var password = PasswordEntry.Text;
 
-            ErrorMessageLabel.IsVisible = false;
-            await Shell.Current.GoToAsync("///MainPage");
+            //ErrorMessageLabel.IsVisible = false;
+            //await Shell.Current.GoToAsync("///MainPage");
         if (username == HardcodedUsername && password == HardcodedPassword)
             {
                 ErrorMessageLabel.IsVisible = false;
