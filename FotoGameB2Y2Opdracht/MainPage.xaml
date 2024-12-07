@@ -83,9 +83,9 @@
             <!-- Camera -->
             <VerticalStackLayout Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center">
                 <Image Source="camera_icon.png" WidthRequest="30" HeightRequest="30">
-                    <!-- <Image.GestureRecognizers>
+                    <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnClaimsTapped" />
-                    </Image.GestureRecognizers> -->
+                    </Image.GestureRecognizers>
                 </Image>
                 <Label Text="Claims" FontSize="10" />
             </VerticalStackLayout>

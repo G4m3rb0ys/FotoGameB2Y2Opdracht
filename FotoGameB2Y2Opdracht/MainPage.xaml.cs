@@ -31,7 +31,7 @@ namespace FotoGameB2Y2Opdracht
 
         private async void OnClaimsTapped(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("ClaimsPage");
+            await Shell.Current.GoToAsync("///ClaimsPage");
         }
     }
 }

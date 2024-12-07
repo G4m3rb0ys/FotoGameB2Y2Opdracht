@@ -30,5 +30,11 @@
     <ShellContent Title="CreateTaskPage"
                   ContentTemplate="{DataTemplate local:CreateTaskPage}"
                   Route="CreateTaskPage" />
+    <ShellContent Title="Claims"
+                  ContentTemplate="{DataTemplate local:ClaimsPage}"
+                  Route="ClaimsPage" />
+    <ShellContent Title="ClaimDetailsPage"
+                  ContentTemplate="{DataTemplate local:ClaimDetailsPage}"
+                  Route="ClaimDetailsPage" />
 
 </Shell>

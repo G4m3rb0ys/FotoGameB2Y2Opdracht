@@ -39,7 +39,7 @@ public partial class TasksPage : ContentPage
     // Navigeren naar de geclaimde opdrachtenpagina
     private async void OnClaimsTapped(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("ClaimsPage");
+        await Shell.Current.GoToAsync("///ClaimsPage");
     }
 
     private async void OnCreateTaskButtonClicked(object sender, EventArgs e)

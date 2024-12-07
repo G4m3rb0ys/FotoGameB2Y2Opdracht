@@ -1,0 +1,141 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FotoGameB2Y2Opdracht.ClaimsPage"
+             Title="My Claims">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Claimslijst -->
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="20" Spacing="10">
+                <!-- Titel -->
+                <Label Text="My Claims"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+
+                <!-- Dynamische taken -->
+                <CollectionView x:Name="ClaimsCollectionView" SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="0,5">
+                                <Grid RowDefinitions="Auto, Auto, Auto, Auto"
+                                      ColumnDefinitions="*, Auto">
+                                    <!-- Titel -->
+                                    <Label Text="{Binding Title}" 
+                                           FontSize="18" 
+                                           Grid.Column="0" 
+                                           Grid.Row="0" />
+
+                                    <!-- Punten -->
+                                    <Label Text="{Binding Points, StringFormat='{0} pts'}" 
+                                           FontSize="16" 
+                                           TextColor="Gold" 
+                                           Grid.Column="1" 
+                                           Grid.Row="0" 
+                                           HorizontalOptions="End" />
+
+                                    <!-- Beschrijving -->
+                                    <Label Text="{Binding Description}" 
+                                           FontSize="14"
+                                           Grid.Row="1" 
+                                           Grid.ColumnSpan="2" 
+                                           LineBreakMode="WordWrap" />
+
+                                    <!-- Deadline -->
+                                    <Label Text="{Binding Deadline, StringFormat='Deadline: {0:yyyy-MM-dd}'}" 
+                                           FontSize="12" 
+                                           TextColor="Gray" 
+                                           Grid.Row="2" 
+                                           Grid.Column="1" 
+                                           HorizontalOptions="End" />
+
+                                    <!-- Details knop -->
+                                    <Button Text="View Details"
+                                            BackgroundColor="Blue"
+                                            TextColor="White"
+                                            FontSize="12"
+                                            Padding="5"
+                                            Grid.Row="3"
+                                            Grid.ColumnSpan="2"
+                                            Clicked="OnViewDetailsClicked" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Navigatiebalk -->
+        <Grid Grid.Row="1" BackgroundColor="LightGray" Padding="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Profiel -->
+            <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="profile_icon.png" WidthRequest="30" HeightRequest="30">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnProfileTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Profile" FontSize="10" />
+            </VerticalStackLayout>
+
+            <!-- Winkel -->
+            <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="cart_icon.png" WidthRequest="30" HeightRequest="30">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnShopTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Shop" FontSize="10" />
+            </VerticalStackLayout>
+
+            <!-- Hoofdknop -->
+            <Frame Grid.Column="2"
+                   Padding="10"
+                   CornerRadius="50"
+                   BackgroundColor="White"
+                   BorderColor="Black"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HeightRequest="70"
+                   WidthRequest="70">
+                <Image Source="main_icon.png" WidthRequest="50" HeightRequest="50">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMainTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
+
+            <!-- Opdrachten -->
+            <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="scroll_icon.png" WidthRequest="30" HeightRequest="30">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTasksTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Tasks" FontSize="10" />
+            </VerticalStackLayout>
+
+            <!-- Camera -->
+            <VerticalStackLayout Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="camera_icon.png" WidthRequest="30" HeightRequest="30">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnClaimsTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Claims" FontSize="10" />
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>
