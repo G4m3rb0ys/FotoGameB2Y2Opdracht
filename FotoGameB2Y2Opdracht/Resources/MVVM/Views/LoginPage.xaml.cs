@@ -1,4 +1,4 @@
-namespace FotoGameB2Y2Opdracht;
+namespace FotoGameB2Y2Opdracht.MVVM.Views;
 
     public partial class LoginPage : ContentPage
     {

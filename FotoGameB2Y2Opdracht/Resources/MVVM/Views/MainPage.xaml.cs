@@ -1,6 +1,6 @@
 using Microsoft.Maui.Controls;
 
-namespace FotoGameB2Y2Opdracht
+namespace FotoGameB2Y2Opdracht.MVVM.Views
 {
     public partial class MainPage : ContentPage
     {

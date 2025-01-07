@@ -1,6 +1,6 @@
 using Microsoft.Maui.Storage;
 
-namespace FotoGameB2Y2Opdracht;
+namespace FotoGameB2Y2Opdracht.MVVM.Views;
 
 public partial class ClaimDetailsPage : ContentPage
 {

@@ -73,37 +73,39 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="ClaimDetailsPage.xaml">
+	  <MauiXaml Update="Resources\MVVM\Views\ClaimDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ClaimsPage.xaml">
+	  <MauiXaml Update="Resources\MVVM\Views\ClaimsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="CreateTaskPage.xaml">
+	  <MauiXaml Update="Resources\MVVM\Views\CreateTaskPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ForgotPasswordPage.xaml">
+	  <MauiXaml Update="Resources\MVVM\Views\ForgotPasswordPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="LoginPage.xaml">
+	  <MauiXaml Update="Resources\MVVM\Views\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MainPage.xaml">
+	  <MauiXaml Update="Resources\MVVM\Views\MainPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="RegisterPage.xaml">
+	  <MauiXaml Update="Resources\MVVM\Views\RegisterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="TaskPage.xaml">
+	  <MauiXaml Update="Resources\MVVM\Views\TaskPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="TasksPage.xaml">
+	  <MauiXaml Update="Resources\MVVM\Views\TasksPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Models\" />
+	  <Folder Include="Resources\MVVM\Models\" />
+	  <Folder Include="Resources\MVVM\ViewModels\" />
 	</ItemGroup>
 
 </Project>

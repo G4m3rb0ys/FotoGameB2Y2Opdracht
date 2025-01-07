@@ -1,6 +1,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FotoGameB2Y2Opdracht.LoginPage"
+             x:Class="FotoGameB2Y2Opdracht.MVVM.Views.LoginPage"
              Title="Login">
     <VerticalStackLayout Padding="20" Spacing="10">
         <Label Text="Login" FontSize="24" HorizontalOptions="Center" />

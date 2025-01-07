@@ -1,6 +1,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FotoGameB2Y2Opdracht.RegisterPage"
+             x:Class="FotoGameB2Y2Opdracht.MVVM.Views.RegisterPage"
              Title="Register">
     <VerticalStackLayout Padding="20" Spacing="10">
         <HorizontalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
