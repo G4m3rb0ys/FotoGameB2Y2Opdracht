@@ -146,9 +146,9 @@
             <!-- Profiel -->
             <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
                 <Image Source="profile_icon.png" WidthRequest="30" HeightRequest="30">
-                    <!-- <Image.GestureRecognizers>
+                    <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnProfileTapped" />
-                    </Image.GestureRecognizers> -->
+                    </Image.GestureRecognizers>
                 </Image>
                 <Label Text="Profile" FontSize="10" />
             </VerticalStackLayout>

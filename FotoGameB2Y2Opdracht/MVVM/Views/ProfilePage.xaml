@@ -1,30 +1,64 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FotoGameB2Y2Opdracht.MVVM.Views.MainPage"
-             Title="Main Page">
-    <Grid>
-        <!-- Bovenste rij voor punten -->
+             x:Class="FotoGameB2Y2Opdracht.MVVM.Views.ProfilePage"
+             Title="Profile">
+    <Grid Padding="20">
+        <!-- Punten rechtsboven -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!-- Punten met kroontje rechtsboven -->
         <HorizontalStackLayout Grid.Row="0" HorizontalOptions="End" VerticalOptions="Start" Padding="10">
             <Image Source="crown_icon.png" WidthRequest="24" HeightRequest="24" />
             <Label Text="100" FontSize="18" TextColor="Gold" VerticalOptions="Center" />
         </HorizontalStackLayout>
 
-        <!-- Hoofdinhoud -->
-        <StackLayout Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
-            <Label Text="Welcome to the Photo Game!"
-                   FontSize="24"
-                   HorizontalOptions="Center" />
-            <!-- Hier komt de inhoud van de hoofdpagina -->
-        </StackLayout>
+        <!-- Profielfoto en username -->
+        <HorizontalStackLayout Grid.Row="1" Spacing="20" VerticalOptions="Center" HorizontalOptions="Center">
+            <!-- Username met wijzig-icoon -->
+            <VerticalStackLayout>
+                <HorizontalStackLayout Spacing="5">
+                    <Label x:Name="UsernameLabel"
+                           Text="HardcodedUser"
+                           FontSize="24"
+                           VerticalOptions="Center" />
+                    <Image Source="edit_icon.png"
+                           WidthRequest="20"
+                           HeightRequest="20">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnEditUsernameClicked" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
 
-        <Grid Grid.Row="2" BackgroundColor="LightGray" Padding="5">
+            <!-- Profielfoto -->
+            <Frame WidthRequest="100" HeightRequest="100" CornerRadius="50" BorderColor="Black" HasShadow="True">
+                <Image x:Name="ProfileImage"
+                       Source="default_profile.png"
+                       Aspect="AspectFill">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnChangeProfilePhotoClicked" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
+        </HorizontalStackLayout>
+
+        <!-- Uitlogknop onderaan -->
+        <Button Grid.Row="2"
+                Text="Log Out"
+                BackgroundColor="Red"
+                TextColor="White"
+                CornerRadius="5"
+                FontSize="18"
+                VerticalOptions="End"
+                HorizontalOptions="FillAndExpand" />
+
+        <!-- Navigatiebalk -->
+        <Grid Grid.Row="3" BackgroundColor="LightGray" Padding="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -46,23 +80,23 @@
             <!-- Winkel -->
             <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
                 <Image Source="cart_icon.png" WidthRequest="30" HeightRequest="30">
-                    <!-- <Image.GestureRecognizers>
+                    <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnShopTapped" />
-                    </Image.GestureRecognizers> -->
+                    </Image.GestureRecognizers>
                 </Image>
                 <Label Text="Shop" FontSize="10" />
             </VerticalStackLayout>
 
             <!-- Hoofdknop -->
             <Frame Grid.Column="2"
-           Padding="10"
-           CornerRadius="50"
-           BackgroundColor="White"
-           BorderColor="Black"
-           HorizontalOptions="Center"
-           VerticalOptions="Center"
-           HeightRequest="70"
-           WidthRequest="70">
+                   Padding="10"
+                   CornerRadius="50"
+                   BackgroundColor="White"
+                   BorderColor="Black"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HeightRequest="70"
+                   WidthRequest="70">
                 <Image Source="main_icon.png" WidthRequest="50" HeightRequest="50">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnMainTapped" />

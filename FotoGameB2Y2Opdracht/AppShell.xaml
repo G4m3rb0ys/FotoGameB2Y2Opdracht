@@ -37,5 +37,8 @@
     <ShellContent Title="ClaimDetailsPage"
                   ContentTemplate="{DataTemplate views:ClaimDetailsPage}"
                   Route="ClaimDetailsPage" />
+    <ShellContent Title="ProfilePage"
+                  ContentTemplate="{DataTemplate views:ProfilePage}"
+                  Route="ProfilePage" />
 
 </Shell>

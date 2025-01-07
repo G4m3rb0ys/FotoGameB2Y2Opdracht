@@ -45,7 +45,7 @@ public partial class ClaimsPage : ContentPage
 
     private async void OnProfileTapped(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("ProfilePage");
+        await Shell.Current.GoToAsync("///ProfilePage");
     }
 
     private async void OnShopTapped(object sender, EventArgs e)

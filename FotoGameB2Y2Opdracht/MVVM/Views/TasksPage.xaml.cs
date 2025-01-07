@@ -15,7 +15,7 @@ public partial class TasksPage : ContentPage
     // Navigeren naar de profielpagina
     private async void OnProfileTapped(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("ProfilePage");
+        await Shell.Current.GoToAsync("///ProfilePage");
     }
 
     // Navigeren naar de winkelpagina
