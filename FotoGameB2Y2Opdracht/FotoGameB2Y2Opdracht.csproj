@@ -60,6 +60,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Resources\MVVM\**" />
+	  <Compile Remove="Resources\MVVM\**" />
+	  <EmbeddedResource Remove="Resources\MVVM\**" />
+	  <MauiCss Remove="Resources\MVVM\**" />
+	  <MauiXaml Remove="Resources\MVVM\**" />
+	  <None Remove="Resources\MVVM\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Remove="AboutPage.xaml.cs" />
 	</ItemGroup>
 
@@ -76,39 +85,10 @@
 	  <MauiXaml Update="MVVM\Views\ProfilePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Resources\MVVM\Views\ClaimDetailsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\MVVM\Views\ClaimsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\MVVM\Views\CreateTaskPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\MVVM\Views\ForgotPasswordPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\MVVM\Views\LoginPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\MVVM\Views\MainPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\MVVM\Views\RegisterPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\MVVM\Views\TaskPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\MVVM\Views\TasksPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Models\" />
-	  <Folder Include="Resources\MVVM\Models\" />
-	  <Folder Include="Resources\MVVM\ViewModels\" />
 	</ItemGroup>
 
 </Project>

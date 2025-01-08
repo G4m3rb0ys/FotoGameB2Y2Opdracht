@@ -3,40 +3,46 @@
              x:Class="FotoGameB2Y2Opdracht.MVVM.Views.ProfilePage"
              Title="Profile">
     <Grid Padding="20">
-        <!-- Punten rechtsboven -->
+        <!-- Definieer rijen -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <!-- Bovenste rij met username, punten en profielfoto -->
             <RowDefinition Height="*" />
+            <!-- Middenstuk met profielcontent -->
             <RowDefinition Height="Auto" />
+            <!-- Uitlogknop -->
             <RowDefinition Height="Auto" />
+            <!-- Navigatiebalk -->
         </Grid.RowDefinitions>
 
-        <HorizontalStackLayout Grid.Row="0" HorizontalOptions="End" VerticalOptions="Start" Padding="10">
-            <Image Source="crown_icon.png" WidthRequest="24" HeightRequest="24" />
-            <Label Text="100" FontSize="18" TextColor="Gold" VerticalOptions="Center" />
+        <!-- Username linksboven -->
+        <HorizontalStackLayout Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Start" Padding="10" Spacing="5">
+            <Label x:Name="UsernameLabel"
+                   Text="HardcodedUser"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   VerticalOptions="Center" />
+
+            <!-- Potlood-icoon voor wijzigen -->
+            <Image Source="edit_icon_white.png"
+                   WidthRequest="20"
+                   HeightRequest="20"
+                   VerticalOptions="Center">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnEditUsernameClicked" />
+                </Image.GestureRecognizers>
+            </Image>
         </HorizontalStackLayout>
 
-        <!-- Profielfoto en username -->
-        <HorizontalStackLayout Grid.Row="1" Spacing="20" VerticalOptions="Center" HorizontalOptions="Center">
-            <!-- Username met wijzig-icoon -->
-            <VerticalStackLayout>
-                <HorizontalStackLayout Spacing="5">
-                    <Label x:Name="UsernameLabel"
-                           Text="HardcodedUser"
-                           FontSize="24"
-                           VerticalOptions="Center" />
-                    <Image Source="edit_icon.png"
-                           WidthRequest="20"
-                           HeightRequest="20">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnEditUsernameClicked" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                </HorizontalStackLayout>
-            </VerticalStackLayout>
+        <!-- Punten en profielfoto rechtsboven -->
+        <HorizontalStackLayout Grid.Row="0" HorizontalOptions="End" VerticalOptions="Start" Padding="10" Spacing="10">
+            <!-- Punten -->
+            <Image Source="crown_icon.png" WidthRequest="24" HeightRequest="24" />
+            <Label Text="100" FontSize="18" TextColor="Gold" VerticalOptions="Center" />
 
             <!-- Profielfoto -->
-            <Frame WidthRequest="100" HeightRequest="100" CornerRadius="50" BorderColor="Black" HasShadow="True">
+            <Frame WidthRequest="150" HeightRequest="150" CornerRadius="75" BorderColor="Black" HasShadow="True" Padding="0">
                 <Image x:Name="ProfileImage"
                        Source="default_profile.png"
                        Aspect="AspectFill">
@@ -47,17 +53,18 @@
             </Frame>
         </HorizontalStackLayout>
 
-        <!-- Uitlogknop onderaan -->
+        <!-- Uitlogknop boven de navigatiebalk -->
         <Button Grid.Row="2"
                 Text="Log Out"
                 BackgroundColor="Red"
                 TextColor="White"
-                CornerRadius="5"
                 FontSize="18"
+                CornerRadius="10"
+                HorizontalOptions="FillAndExpand"
                 VerticalOptions="End"
-                HorizontalOptions="FillAndExpand" />
+                Margin="20,10" />
 
-        <!-- Navigatiebalk -->
+        <!-- Navigatiebalk onderaan -->
         <Grid Grid.Row="3" BackgroundColor="LightGray" Padding="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

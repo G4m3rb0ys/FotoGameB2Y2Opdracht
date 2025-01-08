@@ -15,3 +15,5 @@ Credits for Icons:
 5. Icon by Freepik (Camera)
    https://www.freepik.com/icon/camera_883787#fromView=search&page=1&position=6&uuid=c579cb44-21b1-40fa-9a01-584c2a4748a3
 */
+
+6. Icon by <a href="https://www.flaticon.com/free-icons/edit" title="edit icons">Edit icons created by Kiranshastry - Flaticon</a> (edit)
