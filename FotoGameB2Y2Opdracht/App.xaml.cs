@@ -1,15 +1,16 @@
-﻿namespace FotoGameB2Y2Opdracht
+﻿using FotoGameB2Y2Opdracht.Services;
+
+namespace FotoGameB2Y2Opdracht
 {
     public partial class App : Application
     {
-        public App()
+        public App(LocalDbService dbService)
         {
             InitializeComponent();
-        }
 
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            return new Window(new AppShell());
+            Task.Run(async () => await dbService.InitializeDatabase());
+
+            MainPage = new AppShell();
         }
     }
 }

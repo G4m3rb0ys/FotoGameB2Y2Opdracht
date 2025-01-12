@@ -22,5 +22,7 @@
         Padding="0"
         HorizontalOptions="Center" />
 
+        <Button Text="Continue as Guest" Clicked="OnSkipButtonClicked"></Button>
+
     </VerticalStackLayout>
 </ContentPage>

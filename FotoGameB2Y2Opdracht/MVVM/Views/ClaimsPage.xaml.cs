@@ -1,19 +1,14 @@
+using FotoGameB2Y2Opdracht.MVVM.ViewModels;
+using FotoGameB2Y2Opdracht.MVVM.Models;
+
 namespace FotoGameB2Y2Opdracht.MVVM.Views;
 
 public partial class ClaimsPage : ContentPage
 {
-    public ClaimsPage()
+    public ClaimsPage(ClaimsViewModel viewModel)
     {
         InitializeComponent();
-
-        // Hardcoded claims
-        var claims = new List<Claim>
-        {
-            new Claim { Title = "Claimed Task 1", Description = "Description of claimed task 1.", Deadline = new DateTime(2023, 12, 20), Points = 50, IsWeekly = false },
-            new Claim { Title = "Claimed Task 2", Description = "Description of claimed task 2.", Deadline = new DateTime(2023, 12, 25), Points = 30, IsWeekly = true }
-        };
-
-        ClaimsCollectionView.ItemsSource = claims;
+        BindingContext = viewModel;
     }
 
     private async void OnViewDetailsClicked(object sender, EventArgs e)
@@ -23,23 +18,7 @@ public partial class ClaimsPage : ContentPage
 
         if (claim != null)
         {
-            var weeklyGoals = new List<string>
-            {
-                "Complete Week 1 goal",
-                "Complete Week 2 goal",
-                "Complete Week 3 goal"
-            };
-
-            string serializedGoals = string.Join(",", weeklyGoals);
-
-            await Shell.Current.GoToAsync($"///ClaimDetailsPage?" +
-                                           $"title={Uri.EscapeDataString(claim.Title)}&" +
-                                           $"description={Uri.EscapeDataString(claim.Description)}&" +
-                                           $"deadline={Uri.EscapeDataString(claim.Deadline.ToString("yyyy-MM-dd"))}&" +
-                                           $"points={claim.Points}&" +
-                                           $"isWeekly={claim.IsWeekly}&" +
-                                           $"weeklyGoals={Uri.EscapeDataString(serializedGoals)}&" +
-                                           $"currentWeek=2");
+            await Shell.Current.GoToAsync($"///ClaimDetailsPage?taskId={claim.TaskId}");
         }
     }
 
@@ -67,13 +46,4 @@ public partial class ClaimsPage : ContentPage
     {
         await Shell.Current.GoToAsync("///ClaimsPage");
     }
-}
-
-public class Claim
-{
-    public string Title { get; set; }
-    public string Description { get; set; }
-    public DateTime Deadline { get; set; }
-    public int Points { get; set; }
-    public bool IsWeekly { get; set; }
 }

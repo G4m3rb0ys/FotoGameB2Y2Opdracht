@@ -15,7 +15,7 @@
         </HorizontalStackLayout>
 
         <!-- Invoervelden -->
-        <Entry x:Name="AgeEntry" Placeholder="Age" Keyboard="Numeric" />
+        <Entry x:Name="UsernameEntry" Placeholder="Username" Keyboard="Text" />
         <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" />
         <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" />
 

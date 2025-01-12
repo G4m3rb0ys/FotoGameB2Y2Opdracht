@@ -1,3 +1,5 @@
+using FotoGameB2Y2Opdracht.Services;
+
 namespace FotoGameB2Y2Opdracht.MVVM.Views;
 
 public partial class ProfilePage : ContentPage
@@ -6,6 +8,20 @@ public partial class ProfilePage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private readonly UserService _userService;
+
+    public ProfilePage(UserService userService)
+    {
+        InitializeComponent();
+        _userService = userService;
+
+        var currentUser = _userService.GetCurrentUser();
+        if (currentUser != null)
+        {
+            UsernameLabel.Text = currentUser.Username;
+        }
+    }
 
     // Username wijzigen
     private async void OnEditUsernameClicked(object sender, TappedEventArgs e)
@@ -40,6 +56,13 @@ public partial class ProfilePage : ContentPage
         }
     }
 
+    // Uitloggen
+    private async void OnLogoutButtonClicked(object sender, EventArgs e)
+    {
+        _userService.Logout();
+        await Shell.Current.GoToAsync("///LoginPage");
+    }
+
     // Navigatie naar profielpagina
     private async void OnProfileTapped(object sender, TappedEventArgs e)
     {
@@ -68,5 +91,10 @@ public partial class ProfilePage : ContentPage
     private async void OnClaimsTapped(object sender, TappedEventArgs e)
     {
         await Shell.Current.GoToAsync("//ClaimsPage");
+    }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+
     }
 }

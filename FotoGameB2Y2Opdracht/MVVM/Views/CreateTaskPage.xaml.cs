@@ -1,10 +1,18 @@
 namespace FotoGameB2Y2Opdracht.MVVM.Views;
+using FotoGameB2Y2Opdracht.MVVM.Models;
+using FotoGameB2Y2Opdracht.Services;
+using SQLite;
 
 public partial class CreateTaskPage : ContentPage
 {
-    public CreateTaskPage()
+    private readonly LocalDbService _dbService;
+    private readonly UserService _userService;
+
+    public CreateTaskPage(LocalDbService dbService, UserService userService)
     {
         InitializeComponent();
+        _dbService = dbService;
+        _userService = userService;
     }
 
     private void OnIsWeeklyCheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -15,7 +23,7 @@ public partial class CreateTaskPage : ContentPage
 
         if (!isChecked)
         {
-            WeeklyGoalsLayout.Children.Clear(); 
+            WeeklyGoalsLayout.Children.Clear();
         }
     }
 
@@ -38,6 +46,7 @@ public partial class CreateTaskPage : ContentPage
 
     private async void OnSaveTaskClicked(object sender, EventArgs e)
     {
+        var currentUser = _userService.GetCurrentUser();
         string title = TitleEntry.Text;
         string description = DescriptionEditor.Text;
         DateTime deadline = DeadlinePicker.Date;
@@ -49,27 +58,43 @@ public partial class CreateTaskPage : ContentPage
             return;
         }
 
-        List<string> weeklyGoals = new List<string>();
+        var task = new Tasks
+        {
+            Title = title,
+            Description = description,
+            Deadline = deadline,
+            IsWeekly = isWeekly,
+            CreatorID = currentUser.Id
+        };
+
+        await _dbService.CreateTask(task);
+
         if (isWeekly)
         {
+            int currentWeek = 1;
+            List<WeeklyTaskGoal> weeklyTasks = new List<WeeklyTaskGoal>();
+
             foreach (var child in WeeklyGoalsLayout.Children)
             {
                 if (child is Entry entry && !string.IsNullOrWhiteSpace(entry.Text))
                 {
-                    weeklyGoals.Add(entry.Text);
+                    weeklyTasks.Add(new WeeklyTaskGoal
+                    {
+                        TaskID = task.Id,
+                        Weeknumber = currentWeek,
+                        Description = entry.Text
+                    });
+
+                    currentWeek++;
                 }
             }
+
+            await _dbService.AddWeeklyGoals(weeklyTasks);
         }
 
-        string message = $"Task '{title}' created with deadline {deadline:yyyy-MM-dd}.";
-        if (isWeekly)
-        {
-            message += $"\nWeekly goals:\n- {string.Join("\n- ", weeklyGoals)}";
-        }
-
-        await DisplayAlert("Task Created", message, "OK");
+        string message = isWeekly ? "Weekly task created!" : "Task created!";
+        await DisplayAlert("Success", message, "OK");
 
         await Shell.Current.GoToAsync("///TasksPage");
-
     }
 }

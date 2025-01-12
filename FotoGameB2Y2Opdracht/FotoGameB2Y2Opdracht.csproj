@@ -77,18 +77,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.10" />
+		<PackageReference Include="Bogus" Version="35.6.1" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.22" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Update="MVVM\Views\ProfilePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Models\" />
 	</ItemGroup>
 
 </Project>

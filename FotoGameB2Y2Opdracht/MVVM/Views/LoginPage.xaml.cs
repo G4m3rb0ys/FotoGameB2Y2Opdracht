@@ -1,13 +1,20 @@
-namespace FotoGameB2Y2Opdracht.MVVM.Views;
+using FotoGameB2Y2Opdracht.Services;
 
+namespace FotoGameB2Y2Opdracht.MVVM.Views
+{
     public partial class LoginPage : ContentPage
     {
-        private const string HardcodedUsername = "admin";
-        private const string HardcodedPassword = "password123";
+        private readonly UserService _userService;
 
-        public LoginPage()
+        public LoginPage(UserService userService)
         {
             InitializeComponent();
+            _userService = userService;
+
+            if (_userService.IsLoggedIn())
+            {
+                Shell.Current.GoToAsync("///MainPage");
+            }
         }
 
         private async void OnLoginButtonClicked(object sender, EventArgs e)
@@ -15,29 +22,33 @@ namespace FotoGameB2Y2Opdracht.MVVM.Views;
             var username = UsernameEntry.Text;
             var password = PasswordEntry.Text;
 
-            //Bypass login
-            ErrorMessageLabel.IsVisible = false;
-            await Shell.Current.GoToAsync("///MainPage");
-        if (username == HardcodedUsername && password == HardcodedPassword)
+            var user = await _userService.LoginAsync(username, password);
+
+            if (user != null)
             {
                 ErrorMessageLabel.IsVisible = false;
                 await Shell.Current.GoToAsync("///MainPage");
-        }
+            }
             else
             {
                 ErrorMessageLabel.Text = "Invalid username or password.";
                 ErrorMessageLabel.IsVisible = true;
             }
         }
-    // navigatie naar registerpagina
-    private async void OnRegisterButtonClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("///RegisterPage");
-    }
 
-    // navigatie naar wachtwoord vergeten pagina
-    private async void OnForgotPasswordClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("///ForgotPasswordPage");
+        private async void OnRegisterButtonClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("///RegisterPage");
+        }
+
+        private async void OnForgotPasswordClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("///ForgotPasswordPage");
+        }
+
+        private async void OnSkipButtonClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("///MainPage");
+        }
     }
 }

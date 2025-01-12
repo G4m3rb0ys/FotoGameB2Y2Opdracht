@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FotoGameB2Y2Opdracht.MVVM.Views.TasksPage"
              Title="Tasks">
+
     <Grid>
         <!-- Layout met drie rijen -->
         <Grid.RowDefinitions>
@@ -12,126 +13,50 @@
 
         <!-- Punten rechtsboven -->
         <HorizontalStackLayout Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="10" Spacing="10">
-            <!-- Knop voor het maken van een nieuwe taak -->
             <Button Text="Create Task"
-            BackgroundColor="Blue"
-            TextColor="White"
-            FontSize="12"
-            Padding="5"
-            WidthRequest="100"
-            Clicked="OnCreateTaskButtonClicked" />
-
-            <!-- Puntenweergave -->
+                    BackgroundColor="Blue"
+                    TextColor="White"
+                    FontSize="12"
+                    Padding="5"
+                    WidthRequest="100"
+                    Clicked="OnCreateTaskButtonClicked" />
             <HorizontalStackLayout HorizontalOptions="End" VerticalOptions="Center">
                 <Image Source="crown_icon.png" WidthRequest="24" HeightRequest="24" />
                 <Label Text="100" FontSize="18" TextColor="Gold" VerticalOptions="Center" />
             </HorizontalStackLayout>
         </HorizontalStackLayout>
 
-
-        <!-- Hoofdinhoud: lijst met taken -->
-        <ScrollView Grid.Row="1">
-            <VerticalStackLayout Padding="10" Spacing="10">
-                <ScrollView>
-                    <VerticalStackLayout Padding="10" Spacing="10">
-                        <!-- Taak 1 -->
-                        <Frame BorderColor="Gray" CornerRadius="10" Padding="10">
-                            <Grid RowDefinitions="Auto, Auto, Auto, Auto"
-                                ColumnDefinitions="*, Auto">
-                                <!-- Titel en punten -->
-                                <Label Text="Task 1" 
-                                   FontSize="18" 
-                                   Grid.Column="0" 
-                                   Grid.Row="0" />
-                                <Label Text="50 pts" 
-                                   FontSize="16" 
-                                   TextColor="Gold" 
-                                   Grid.Column="1" 
-                                   Grid.Row="0" 
-                                   HorizontalOptions="End" />
-
-                                <!-- Beschrijving -->
-                                <BoxView Grid.Row="1" Grid.ColumnSpan="2" HeightRequest="1" BackgroundColor="Gray" Margin="0,5,0,5"/>
-                                <Label Text="This is a brief description of Task 1."
-                                   FontSize="14"
-                                   Grid.Row="2" 
-                                   Grid.ColumnSpan="2" />
-
-                                <!-- Knop en deadline -->
-                                <Grid Grid.Row="3" ColumnDefinitions="*, Auto">
-                                    <!-- Knop -->
-                                    <Button Text="View Task" 
-                                    FontSize="12" 
-                                    BackgroundColor="Blue" 
-                                    TextColor="White" 
-                                    Padding="5"
-                                    Grid.Column="0" 
-                                    VerticalOptions="End" 
-                                    HorizontalOptions="Start" 
-                                    WidthRequest="100" 
-                                    Clicked="OnViewTaskClicked" />  
-
-                                    <!-- Deadline -->
-                                    <Label Text="Deadline: 2023-12-15" 
-                                       FontSize="12" 
-                                       Grid.Column="1" 
-                                       VerticalOptions="End" 
-                                       HorizontalOptions="End" />       
-                                </Grid>
+        <!-- lijst met taken -->
+        <CollectionView Grid.Row="1" x:Name="TasksCollectionView" IsVisible="False">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="0,10">
+                        <Grid RowDefinitions="Auto, Auto, Auto, Auto"
+                              ColumnDefinitions="*, Auto">
+                            <Label Text="{Binding Title}" FontSize="18" Grid.Column="0" Grid.Row="0" />
+                            <Label Text="{Binding Cost, StringFormat='{}{0} pts'}" FontSize="16" TextColor="Gold" Grid.Column="1" Grid.Row="0" HorizontalOptions="End" />
+                            <BoxView Grid.Row="1" Grid.ColumnSpan="2" HeightRequest="1" BackgroundColor="Gray" Margin="0,5,0,5"/>
+                            <Label Text="{Binding Description}" FontSize="14" Grid.Row="2" Grid.ColumnSpan="2" />
+                            <Grid Grid.Row="3" ColumnDefinitions="*, Auto">
+                                <Button Text="View Task" FontSize="12" BackgroundColor="Blue" TextColor="White" Padding="5"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ViewTaskCommand}"
+                                CommandParameter="{Binding Id}" />
+                                <Label Text="{Binding Deadline, StringFormat='Deadline: {0:yyyy-MM-dd}'}"
+                                       FontSize="12" Grid.Column="1" VerticalOptions="End" HorizontalOptions="End" />
                             </Grid>
-                        </Frame>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
-                        <!-- Taak 2 -->
-                        <Frame BorderColor="Gray" CornerRadius="10" Padding="10">
-                            <Grid RowDefinitions="Auto, Auto, Auto, Auto"
-                                ColumnDefinitions="*, Auto">
-                                <!-- Titel en punten -->
-                                <Label Text="Task 2" 
-                                   FontSize="18" 
-                                   Grid.Column="0" 
-                                   Grid.Row="0" />
-                                <Label Text="30 pts" 
-                                   FontSize="16" 
-                                   TextColor="Gold" 
-                                   Grid.Column="1" 
-                                   Grid.Row="0" 
-                                   HorizontalOptions="End" />   
-
-                                <!-- Beschrijving -->
-                                <BoxView Grid.Row="1" Grid.ColumnSpan="2" HeightRequest="1" BackgroundColor="Gray" Margin="0,5,0,5"/>
-                                <Label Text="This is a brief description of Task 2."
-                                   FontSize="14"
-                                   Grid.Row="2" 
-                                   Grid.ColumnSpan="2" />
-
-                                <!-- Knop en deadline -->
-                                <Grid Grid.Row="3" ColumnDefinitions="*, Auto">
-                                    <!-- Knop -->
-                                    <Button Text="View Task" 
-                                        FontSize="12" 
-                                        BackgroundColor="Blue" 
-                                        TextColor="White" 
-                                        Padding="5"
-                                        Grid.Column="0" 
-                                        VerticalOptions="End" 
-                                        HorizontalOptions="Start" 
-                                        WidthRequest="100" 
-                                        Clicked="OnViewTaskClicked" />
-
-                                    <!-- Deadline -->
-                                    <Label Text="Deadline: 2023-12-20" 
-                                       FontSize="12" 
-                                       Grid.Column="1" 
-                                       VerticalOptions="End" 
-                                       HorizontalOptions="End" />
-                                </Grid>
-                            </Grid>
-                        </Frame>
-                    </VerticalStackLayout>
-                </ScrollView>
-
-            </VerticalStackLayout>
-        </ScrollView>
+        <!-- Geen taken bericht -->
+        <Label Text="No tasks available."
+               Grid.Row="1" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Center" 
+               IsVisible="False"
+               x:Name="NoTasksLabel" />
 
         <!-- Navigatiebalk -->
         <Grid Grid.Row="2" BackgroundColor="LightGray" Padding="5">
@@ -156,23 +81,16 @@
             <!-- Winkel -->
             <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
                 <Image Source="cart_icon.png" WidthRequest="30" HeightRequest="30">
-                    <!-- <Image.GestureRecognizers>
+                    <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnShopTapped" />
-                    </Image.GestureRecognizers> -->
+                    </Image.GestureRecognizers>
                 </Image>
                 <Label Text="Shop" FontSize="10" />
             </VerticalStackLayout>
 
             <!-- Hoofdknop -->
-            <Frame Grid.Column="2"
-           Padding="10"
-           CornerRadius="50"
-           BackgroundColor="White"
-           BorderColor="Black"
-           HorizontalOptions="Center"
-           VerticalOptions="Center"
-           HeightRequest="70"
-           WidthRequest="70">
+            <Frame Grid.Column="2" Padding="10" CornerRadius="50" BackgroundColor="White" BorderColor="Black"
+                   HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="70" WidthRequest="70">
                 <Image Source="main_icon.png" WidthRequest="50" HeightRequest="50">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnMainTapped" />

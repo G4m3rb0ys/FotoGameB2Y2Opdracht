@@ -1,49 +1,79 @@
-namespace FotoGameB2Y2Opdracht.MVVM.Views;
+using FotoGameB2Y2Opdracht.MVVM.Models;
+using FotoGameB2Y2Opdracht.MVVM.ViewModels;
+using FotoGameB2Y2Opdracht.Services;
 
-public partial class TasksPage : ContentPage
+namespace FotoGameB2Y2Opdracht.MVVM.Views
 {
-    public TasksPage()
+    public partial class TasksPage : ContentPage
     {
-        InitializeComponent();
-    }
+        private readonly LocalDbService _dbService;
 
-    private async void OnViewTaskClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("///TaskPage");
-    }
+        public TasksPage(LocalDbService dbService, TasksViewModel viewModel)
+        {
+            InitializeComponent();
+            _dbService = dbService;
+            BindingContext = viewModel;
+            LoadTasks();
+        }
 
-    // Navigeren naar de profielpagina
-    private async void OnProfileTapped(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("///ProfilePage");
-    }
+        private async void LoadTasks()
+        {
+            var tasks = await _dbService.GetTasks();
 
-    // Navigeren naar de winkelpagina
-    private async void OnShopTapped(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("ShopPage");
-    }
+            if (tasks.Any())
+            {
+                TasksCollectionView.ItemsSource = tasks.OrderBy(t => t.Deadline).ToList();
+                TasksCollectionView.IsVisible = true;
+                NoTasksLabel.IsVisible = false;
+            }
+            else
+            {
+                TasksCollectionView.IsVisible = false;
+                NoTasksLabel.IsVisible = true;
+            }
+        }
 
-    // Navigeren naar de hoofdpagina
-    private async void OnMainTapped(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("///MainPage");
-    }
+        // Navigeren naar de detailpagina van een taak
+        private async void OnViewTaskClicked(object sender, EventArgs e)
+        {
+            var taskId = (int)((Button)sender).CommandParameter;
+            await Shell.Current.GoToAsync($"///TaskPage?taskId={taskId}");
+        }
 
-    // Navigeren naar de opdrachtenpagina
-    private async void OnTasksTapped(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("///TasksPage");
-    }
+        // Navigeren naar de profielpagina
+        private async void OnProfileTapped(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("///ProfilePage");
+        }
 
-    // Navigeren naar de geclaimde opdrachtenpagina
-    private async void OnClaimsTapped(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("///ClaimsPage");
-    }
+        // Navigeren naar de winkelpagina
+        private async void OnShopTapped(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("///ShopPage");
+        }
 
-    private async void OnCreateTaskButtonClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("///CreateTaskPage");
+        // Navigeren naar de hoofdpagina
+        private async void OnMainTapped(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("///MainPage");
+        }
+
+        // Navigeren naar de opdrachtenpagina (huidige pagina)
+        private async void OnTasksTapped(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("///TasksPage");
+        }
+
+        // Navigeren naar de geclaimde opdrachtenpagina
+        private async void OnClaimsTapped(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("///ClaimsPage");
+        }
+
+        // Navigeren naar de pagina voor het aanmaken van een nieuwe taak
+        private async void OnCreateTaskButtonClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("///CreateTaskPage");
+        }
     }
 }

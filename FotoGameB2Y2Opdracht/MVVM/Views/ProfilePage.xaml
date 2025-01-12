@@ -62,6 +62,7 @@
                 CornerRadius="10"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="End"
+                Clicked="OnLogoutButtonClicked"
                 Margin="20,10" />
 
         <!-- Navigatiebalk onderaan -->
