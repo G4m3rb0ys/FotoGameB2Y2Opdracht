@@ -16,7 +16,7 @@ namespace FotoGameB2Y2Opdracht.MVVM.Views
 
         private async void OnShopTapped(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("ShopPage");
+            await Shell.Current.GoToAsync("///ShopPage");
         }
 
         private async void OnMainTapped(object sender, EventArgs e)

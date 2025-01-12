@@ -29,5 +29,7 @@ namespace FotoGameB2Y2Opdracht.MVVM.Models
         public bool isDisabled { get; set; } = false;
         [Column("isLoggedIn")]
         public bool isLoggedIn { get; set; } = false;
+        [Column("ProfilePhotoUrl")]
+        public string ProfilePhotoUrl { get; set; }
     }
 }

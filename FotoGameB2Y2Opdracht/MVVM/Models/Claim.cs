@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace FotoGameB2Y2Opdracht.MVVM.Models
@@ -35,8 +36,26 @@ namespace FotoGameB2Y2Opdracht.MVVM.Models
         [Column("IsWeekly")]
         public bool IsWeekly { get; set; }
 
+        public string WeeklyGoalsJson { get; set; }
+
+        [Ignore]
+        public List<WeeklyTaskGoal> WeeklyGoals
+        {
+            get => string.IsNullOrWhiteSpace(WeeklyGoalsJson) ? new List<WeeklyTaskGoal>() : JsonSerializer.Deserialize<List<WeeklyTaskGoal>>(WeeklyGoalsJson);
+            set => WeeklyGoalsJson = JsonSerializer.Serialize(value);
+        }
+
         [Column("PhotoUrls")]
-        public string PhotoUrls { get; set; }
+        public string PhotoUrlsJson { get; set; }
+
+        [Ignore]
+        public List<string> PhotoUrls
+        {
+            get => string.IsNullOrWhiteSpace(PhotoUrlsJson) ? new List<string>() : JsonSerializer.Deserialize<List<string>>(PhotoUrlsJson);
+            set => PhotoUrlsJson = JsonSerializer.Serialize(value);
+        }
+
+
     }
 
 }

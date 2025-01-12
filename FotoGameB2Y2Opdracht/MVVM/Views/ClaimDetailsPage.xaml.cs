@@ -1,30 +1,53 @@
+using FotoGameB2Y2Opdracht.MVVM.Models;
+using FotoGameB2Y2Opdracht.Services;
 using Microsoft.Maui.Storage;
 
 namespace FotoGameB2Y2Opdracht.MVVM.Views;
 
+[QueryProperty(nameof(ClaimId), "claimId")]
 public partial class ClaimDetailsPage : ContentPage
 {
-    public ClaimDetailsPage()
+    private readonly LocalDbService _dbService;
+    private int _claimId;
+
+    public int ClaimId
+    {
+        get => _claimId;
+        set
+        {
+            _claimId = value;
+            LoadClaimDetailsAsync();
+        }
+    }
+
+    public ClaimDetailsPage(LocalDbService dbService)
     {
         InitializeComponent();
+        _dbService = dbService;
+    }
 
-        // Hardcoded gegevens
-        TitleLabel.Text = "Weekly Task";
-        DescriptionLabel.Text = "This is a weekly task with specific goals for each week.";
-        DeadlineLabel.Text = "Deadline: 2023-12-31";
-        PointsLabel.Text = "Points: 150";
-
-        // Hardcoded wekelijkse doelen
-        var weeklyGoals = new List<WeeklyGoal>
+    private async void LoadClaimDetailsAsync()
+    {
+        var claim = await _dbService.GetClaimByIdAsync(ClaimId);
+        if (claim != null)
         {
-            new WeeklyGoal { Goal = "Complete Week 1 goal", IsCurrentWeek = false },
-            new WeeklyGoal { Goal = "Complete Week 2 goal", IsCurrentWeek = true },
-            new WeeklyGoal { Goal = "Complete Week 3 goal", IsCurrentWeek = false }
-        };
+            TitleLabel.Text = claim.Title;
+            DescriptionLabel.Text = claim.Description;
+            DeadlineLabel.Text = $"Deadline: {claim.Deadline:yyyy-MM-dd}";
+            PointsLabel.Text = $"Points: {claim.Points}";
 
-        WeeklyGoalsLayout.IsVisible = true; // Toon wekelijkse doelen
-        WeeklyGoalsCollectionView.ItemsSource = weeklyGoals;
-        SelectedImage.IsVisible = false;    // Verberg afbeelding standaard
+            var weeklyGoals = await _dbService.GetWeeklyGoalsForClaim(claim.Id);
+            if (weeklyGoals.Any())
+            {
+                WeeklyGoalsLayout.IsVisible = true;
+                WeeklyGoalsCollectionView.ItemsSource = weeklyGoals;
+            }
+        }
+        else
+        {
+            await DisplayAlert("Error", "Claim not found.", "OK");
+            await Shell.Current.GoToAsync("///ClaimsPage");
+        }
     }
 
     private async void OnBackButtonClicked(object sender, EventArgs e)
@@ -32,9 +55,31 @@ public partial class ClaimDetailsPage : ContentPage
         await Shell.Current.GoToAsync("///ClaimsPage");
     }
 
+    private async void OnAddPhotoClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            await CheckAndRequestPermissionsAsync();
+
+            var photo = await MediaPicker.PickPhotoAsync(new MediaPickerOptions { Title = "Select a Photo" });
+            if (photo != null)
+            {
+                var stream = await photo.OpenReadAsync();
+                SelectedImage.Source = ImageSource.FromStream(() => stream);
+                SelectedImage.IsVisible = true;
+
+                // Foto toevoegen aan de database
+                await _dbService.AddPhotoToClaimAsync(ClaimId, photo.FullPath);
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"Unable to pick photo: {ex.Message}", "OK");
+        }
+    }
+
     private async Task CheckAndRequestPermissionsAsync()
     {
-        // Controleer toestemming voor opslag en camera
         var status = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
         if (status != PermissionStatus.Granted)
         {
@@ -43,61 +88,7 @@ public partial class ClaimDetailsPage : ContentPage
 
         if (status != PermissionStatus.Granted)
         {
-            await DisplayAlert("Permission Required", "We need access to your photos or camera.", "OK");
+            await DisplayAlert("Permission Required", "We need access to your photos.", "OK");
         }
     }
-
-    private async void OnTakePhotoClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            // Vraag toestemming voor camera
-            await CheckAndRequestPermissionsAsync();
-
-            // Maak een foto met de camera
-            var photo = await MediaPicker.CapturePhotoAsync();
-            if (photo != null)
-            {
-                var stream = await photo.OpenReadAsync();
-                SelectedImage.Source = ImageSource.FromStream(() => stream);
-                SelectedImage.IsVisible = true;
-            }
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", $"Unable to capture photo: {ex.Message}", "OK");
-        }
-    }
-
-    private async void OnAddPhotoClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            // Vraag toestemming voor toegang tot opslag
-            await CheckAndRequestPermissionsAsync();
-
-            // Kies een foto uit de galerij
-            var photo = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
-            {
-                Title = "Select a Photo"
-            });
-
-            if (photo != null)
-            {
-                var stream = await photo.OpenReadAsync();
-                SelectedImage.Source = ImageSource.FromStream(() => stream);
-                SelectedImage.IsVisible = true;
-            }
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", $"Unable to pick photo: {ex.Message}", "OK");
-        }
-    }
-}
-
-public class WeeklyGoal
-{
-    public string Goal { get; set; }
-    public bool IsCurrentWeek { get; set; }
 }

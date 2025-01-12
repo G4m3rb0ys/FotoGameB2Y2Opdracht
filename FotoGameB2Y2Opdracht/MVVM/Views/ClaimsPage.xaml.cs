@@ -18,9 +18,11 @@ public partial class ClaimsPage : ContentPage
 
         if (claim != null)
         {
-            await Shell.Current.GoToAsync($"///ClaimDetailsPage?taskId={claim.TaskId}");
+            await Shell.Current.GoToAsync($"ClaimDetailsPage?claimId={claim.Id}");
+
         }
     }
+
 
     private async void OnProfileTapped(object sender, EventArgs e)
     {
@@ -29,7 +31,7 @@ public partial class ClaimsPage : ContentPage
 
     private async void OnShopTapped(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("ShopPage");
+        await Shell.Current.GoToAsync("///ShopPage");
     }
 
     private async void OnMainTapped(object sender, EventArgs e)

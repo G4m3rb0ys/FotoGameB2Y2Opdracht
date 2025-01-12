@@ -39,36 +39,42 @@ public partial class TaskPage : ContentPage
 
     private async void OnAcceptTaskClicked(object sender, EventArgs e)
     {
-        var currentUser = _userService.GetCurrentUser();
-        if (currentUser == null)
+        var task = await _dbService.GetTaskById(TaskId);
+        if (task == null)
         {
-            await DisplayAlert("Error", "No user is logged in.", "OK");
-            return;
-        }
-
-        var existingClaim = await _dbService.GetClaimByUserAndTask(currentUser.Id, TaskId);
-        if (existingClaim != null)
-        {
-            await DisplayAlert("Info", "You have already claimed this task.", "OK");
+            await DisplayAlert("Error", "Task not found.", "OK");
             return;
         }
 
         var claim = new Claim
         {
-            TaskId = TaskId,
-            UserId = currentUser.Id,
-            Title = TitleLabel.Text,
-            Description = DescriptionLabel.Text,
-            Deadline = DateTime.Parse(DeadlineLabel.Text.Replace("Deadline: ", "")),
-            Points = int.Parse(PointsLabel.Text.Replace("Points: ", "")),
-            IsWeekly = false 
+            TaskId = task.Id,
+            UserId = _userService.GetCurrentUser().Id,
+            Title = task.Title,
+            Description = task.Description,
+            Deadline = task.Deadline,
+            Points = task.Cost,
+            IsWeekly = task.IsWeekly,
         };
 
         await _dbService.AddClaim(claim);
 
-        await DisplayAlert("Success", $"You have claimed '{TitleLabel.Text}'!", "OK");
+        if (task.IsWeekly)
+        {
+            var weeklyGoals = task.WeeklyGoals.Select(goal => new ClaimWeeklyGoal
+            {
+                WeekNumber = goal.Weeknumber,
+                Description = goal.Description,
+                IsCompleted = false
+            }).ToList();
+
+            await _dbService.AddWeeklyGoalsToClaim(claim.Id, weeklyGoals);
+        }
+
+        await DisplayAlert("Task Accepted", "You have claimed the task!", "OK");
         await Shell.Current.GoToAsync("///ClaimsPage");
     }
+
 
     private async void OnGoBackClicked(object sender, EventArgs e)
     {

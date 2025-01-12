@@ -40,5 +40,8 @@
     <ShellContent Title="ProfilePage"
                   ContentTemplate="{DataTemplate views:ProfilePage}"
                   Route="ProfilePage" />
+    <ShellContent Title="Shop"
+                  ContentTemplate="{DataTemplate views:InspirationPage}"
+                  Route="ShopPage" />
 
 </Shell>

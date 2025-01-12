@@ -43,7 +43,7 @@
                         BackgroundColor="Blue"
                         TextColor="White"
                         FontSize="16"
-                        Clicked="OnTakePhotoClicked" />
+                        Clicked="OnAddPhotoClicked" />
             </HorizontalStackLayout>
 
             <!-- Geselecteerde foto -->
@@ -57,18 +57,20 @@
             <!-- Wekelijkse doelen -->
             <VerticalStackLayout x:Name="WeeklyGoalsLayout" IsVisible="False" Spacing="10">
                 <Label Text="Weekly Goals" FontSize="18" FontAttributes="Bold" />
-                <CollectionView x:Name="WeeklyGoalsCollectionView" SelectionMode="None">
+                <CollectionView x:Name="WeeklyGoalsCollectionView"
+                ItemsSource="{Binding WeeklyGoals}"
+                SelectionMode="None">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Frame BorderColor="Gray" CornerRadius="5" Padding="10" Margin="0,5">
                                 <VerticalStackLayout>
-                                    <Label Text="{Binding Goal}" FontSize="14" />
+                                    <Label Text="{Binding Description}" FontSize="14" />
                                     <Button Text="Add Photo"
-                                            IsVisible="{Binding IsCurrentWeek}"
-                                            BackgroundColor="Blue"
-                                            TextColor="White"
-                                            FontSize="12"
-                                            Clicked="OnAddPhotoClicked" />
+                            IsVisible="{Binding IsCurrentWeek}"
+                            BackgroundColor="Blue"
+                            TextColor="White"
+                            FontSize="12"
+                            Clicked="OnAddPhotoClicked" />
                                 </VerticalStackLayout>
                             </Frame>
                         </DataTemplate>

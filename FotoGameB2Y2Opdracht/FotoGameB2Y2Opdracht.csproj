@@ -85,9 +85,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="MVVM\Views\InspirationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\ProfilePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="MVVM\Views\InspirationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </None>
 	</ItemGroup>
 
 </Project>
